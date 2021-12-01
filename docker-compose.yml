@@ -1,0 +1,17 @@
+web:
+  # docker build -t xxxx .
+  build: .
+  image: xxxx
+  # docker run ... xxxx
+  # -p
+  ports:
+    - "8080:80"
+  # -v
+  volumes:
+    - ./nginx/conf.d/default.template:/etc/nginx/conf.d/default.template
+    - ./index.html:/usr/share/nginx/html/index.html
+  # -e
+  environment:
+    - APP_CONFIG=env=prod;product=test;
+    - NGINX_PORT=80
+#  command: /bin/bash -c "envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"

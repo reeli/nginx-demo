@@ -1,0 +1,19 @@
+gzip_disable ".";
+
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  server_tokens off;
+
+  location /__built__/ {
+    expires 30d;
+    root /usr/share/nginx/html;
+  }
+
+  location / {
+    sub_filter '__APP_CONFIG__' '$APP_CONFIG';
+    sub_filter_types text/html text/plain text/xml;
+    sub_filter_once on;
+  }
+}
+

@@ -1,0 +1,7 @@
+server($USER)
+server1($PWD)
+location / {
+ sub_filter_once off;
+ sub_filter_types text/html;
+ sub_filter "__CONFIG__" "$USER";
+}
